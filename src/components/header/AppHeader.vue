@@ -1,9 +1,9 @@
 <template>
     <v-app-bar
-        color="deep-purple accent-4"
+        color="primary"
         dark
     >
-        <v-toolbar-title>Page title</v-toolbar-title>
+        <v-toolbar-title>EDirectInsure TODO List</v-toolbar-title>
 
         <v-spacer />
         <v-menu
@@ -21,7 +21,7 @@
 
             <v-list>
                 <v-list-item @click="logout">
-                    <v-list-item-title>Option</v-list-item-title>
+                    <v-list-item-title>Logout</v-list-item-title>
                 </v-list-item>
             </v-list>
         </v-menu>
