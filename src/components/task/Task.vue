@@ -38,7 +38,6 @@
                     }).catch(() => {
                         this.task.done = !this.task.done;
                     });
-
             },
         },
     };

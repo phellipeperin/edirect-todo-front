@@ -1,5 +1,5 @@
 ## Edirect Todo List App - Code Challenge - Frontend
-
+This project is the front-end part of a ToDo list by Phellipe Perin for Edirect Code Challenge.
 
 ### Project Setup
 ```
