@@ -22,7 +22,14 @@
                 Edit Task
             </v-card-title>
 
-            <v-card-text />
+            <v-card-text>
+                <v-text-field
+                    v-model="name"
+                    hide-details
+                    label="Task name"
+                    @keyup.enter="confirm"
+                />
+            </v-card-text>
 
             <v-card-actions>
                 <v-spacer />
@@ -68,8 +75,9 @@
                 this.dialog = false;
             },
             confirm() {
-                this.put(`/projects/${this.project._id}`).then(() => {
+                this.put(`/projects/${this.project._id}`, { name: this.name }).then(() => {
                     this.$emit('updateName', this.name);
+                    this.showMessage('Task updated successfully', 'success');
                     this.dialog = false;
                 });
             },

@@ -14,7 +14,7 @@
                 <v-text-field
                     v-model="projectName"
                     hide-details
-                    placeholder="Project name"
+                    label="Project name"
                     @keyup.enter="create"
                 />
                 <v-btn

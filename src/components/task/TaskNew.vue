@@ -7,6 +7,8 @@
             <v-text-field
                 v-model="name"
                 hide-details
+                label="Task name"
+                class="mt-0 pt-0"
                 @keypress.enter="add"
             />
         </v-col>
@@ -15,6 +17,7 @@
             md="4"
         >
             <v-btn
+                block
                 text
                 color="accent"
                 @click="add"
