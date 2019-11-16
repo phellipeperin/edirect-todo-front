@@ -16,7 +16,7 @@
                     class="mt-2"
                     @click="toggleRegister"
                 >
-                    <span v-if="!onRegister">Sing-up</span>
+                    <span v-if="!onRegister">Sign-up</span>
                     <span v-if="onRegister">Back to login</span>
                 </v-btn>
             </v-col>

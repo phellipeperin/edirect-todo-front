@@ -46,7 +46,17 @@
         },
         methods: {
             login() {
-
+                if (!this.username || !this.password) {
+                    this.showMessage('Please fill both fields.', 'warning');
+                } else {
+                    this.post('/login', { username: this.username, password: this.password }).then(({ data }) => {
+                        window.localStorage.setItem('authToken', data);
+                        this.get('/profile').then(({ data: profileData }) => {
+                            this.$store.commit('user', profileData);
+                            this.$router.push('/project');
+                        });
+                    });
+                }
             },
         },
     };

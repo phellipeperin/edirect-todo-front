@@ -19,6 +19,15 @@
         mixins: [api],
         created() {
             this.createInterceptors();
+            const authToken = window.localStorage.getItem('authToken');
+            if (authToken) {
+                this.get('/profile').then(({ data }) => {
+                    this.$store.commit('user', data);
+                    this.$router.push('/project');
+                });
+            } else {
+                this.$router.replace('/');
+            }
         },
     };
 </script>

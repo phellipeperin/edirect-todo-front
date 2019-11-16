@@ -28,7 +28,7 @@ export default {
             }, (error) => {
                 this.$store.commit('closeRequest');
                 if (error.response.status === -1 || error.response.status === 401) {
-                    window.localStorage.authToken = '';
+                    window.localStorage.setItem('authToken', '');
                     window.location.replace('/');
                 } else if (error.response.status === 400 || error.response.status === 409) {
                     this.showMessage(error.response.data, 'warning');
