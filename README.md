@@ -1,11 +1,13 @@
-# edirect-front
+## Edirect Todo List App - Code Challenge - Frontend
 
-## Project setup
+
+### Project Setup
 ```
+git clone https://github.com/phellipeperin/edirect-todo-front.git
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Compiles for development (hot-reloads)
 ```
 npm run serve
 ```
@@ -16,14 +18,15 @@ npm run build
 ```
 
 ### Run your unit tests
+This project has only unit tests. Run all of them with the following command:
 ```
-npm run test:unit
+npm run test
 ```
 
-### Lints and fixes files
+#### Lints and fixes files
+I used the Airbnb styleguide, you can check it out here: https://github.com/airbnb/javascript
+
+However, I made some changes to indentation. Don't worry, lint will warn you :)
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
