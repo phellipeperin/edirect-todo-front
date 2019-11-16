@@ -15,6 +15,7 @@ module.exports = {
         'vue/script-indent': [2, 4, {
             baseIndent: 1,
         }],
+        'no-underscore-dangle': 0,
     },
     parserOptions: {
         parser: 'babel-eslint',

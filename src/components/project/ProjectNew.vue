@@ -8,11 +8,14 @@
                 cols="8"
                 class="text-center"
             >
-                <h2 class="headline mb-4">Create a new project</h2>
+                <h2 class="headline mb-4">
+                    Create a new project
+                </h2>
                 <v-text-field
                     v-model="projectName"
                     hide-details
                     placeholder="Project name"
+                    @keyup.enter="create"
                 />
                 <v-btn
                     block
@@ -43,8 +46,12 @@
             create() {
                 if (!this.projectName) {
                     this.showMessage('Please input the project\'s name', 'warning');
+                } else {
+                    this.post('/projects', { name: this.projectName }).then(({ data }) => {
+                        this.$emit('add', data);
+                        this.projectName = '';
+                    });
                 }
-                // TODO
             },
         },
     };

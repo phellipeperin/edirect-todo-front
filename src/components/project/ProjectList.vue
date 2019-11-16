@@ -7,36 +7,48 @@
                 cols="12"
                 md="4"
             >
-                <project :project="project" />
+                <project
+                    :project="project"
+                    @remove="remove"
+                />
             </v-col>
             <v-col
                 cols="12"
                 md="4"
             >
-                <project-new />
+                <project-new @add="addNew" />
             </v-col>
         </v-row>
     </v-container>
 </template>
 
 <script>
+    import api from '../../util/mixins/api/api';
+
     import Project from './Project.vue';
     import ProjectNew from './ProjectNew.vue';
 
     export default {
         name: 'ProjectList',
         components: { Project, ProjectNew },
+        mixins: [api],
         data() {
             return {
                 projectList: [],
             };
         },
         created() {
-            // TODO list projects
-            this.projectList.push({
-                id: 1,
-                name: 'Project 01',
+            this.get('/projects').then(({ data }) => {
+                this.projectList = data;
             });
+        },
+        methods: {
+            addNew(project) {
+                this.projectList.push(project);
+            },
+            remove(id) {
+                console.log(id);
+            },
         },
     };
 </script>
