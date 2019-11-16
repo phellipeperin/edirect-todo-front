@@ -3,7 +3,7 @@
         <v-row>
             <v-col
                 v-for="project in projectList"
-                :key="project.id"
+                :key="project._id"
                 cols="12"
                 md="4"
             >
@@ -47,7 +47,7 @@
                 this.projectList.push(project);
             },
             remove(id) {
-                console.log(id);
+                this.projectList = this.projectList.filter(elem => elem._id !== id);
             },
         },
     };

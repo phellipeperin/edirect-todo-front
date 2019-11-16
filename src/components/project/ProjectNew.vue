@@ -49,6 +49,7 @@
                 } else {
                     this.post('/projects', { name: this.projectName }).then(({ data }) => {
                         this.$emit('add', data);
+                        this.showMessage('Project added successfully!', 'success');
                         this.projectName = '';
                     });
                 }

@@ -8,14 +8,10 @@
             <v-toolbar-title>{{ projectItem.name }}</v-toolbar-title>
             <v-spacer />
 
-            <v-btn
-                icon
-                dark
-                color="white"
-                @click="edit"
-            >
-                <v-icon>$vuetify.icons.edit</v-icon>
-            </v-btn>
+            <project-edit
+                :project="projectItem"
+                @updateName="updateName"
+            />
 
             <v-btn
                 icon
@@ -29,24 +25,33 @@
         </v-toolbar>
 
         <v-card-text>
-            atividades
+            <task-list
+                ref="taskList"
+                :list="projectItem.taskList"
+            />
         </v-card-text>
 
         <v-divider />
         <v-card-actions>
-            acoes
+            <task-new
+                @create="createTask"
+            />
         </v-card-actions>
     </v-card>
 </template>
 
 <script>
     import api from '../../util/mixins/api/api';
+    import ProjectEdit from './ProjectEdit.vue';
+    import TaskList from '../task/TaskList.vue';
+    import TaskNew from '../task/TaskNew.vue';
 
     export default {
         name: 'Project',
+        components: { ProjectEdit, TaskList, TaskNew },
         mixins: [api],
         props: {
-            project: { type: Object, default: () => {} },
+            project: { type: Object, required: true },
         },
         data() {
             return {
@@ -57,13 +62,21 @@
             this.projectItem = this.project;
         },
         methods: {
-            edit() {
+            updateName(name) {
+                this.projectItem.name = name;
             },
             remove() {
                 this.askForConfirmation('Remove Project', 'Are you sure you want to remove this project? All of it\'s task will be removed as well.', () => {
                     this.delete(`/projects/${this.projectItem._id}`).then(() => {
                         this.$emit('remove', this.projectItem._id);
+                        this.showMessage('Project removed successfully!', 'success');
                     });
+                });
+            },
+            createTask(taskName) {
+                this.post(`/projects/${this.projectItem._id}/task`, { name: taskName }).then(({ data }) => {
+                    this.projectItem.taskList.push(data);
+                    this.$refs.taskList.addNew(data);
                 });
             },
         },
