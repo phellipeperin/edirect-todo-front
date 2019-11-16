@@ -21,7 +21,7 @@
 
             <v-list>
                 <v-list-item @click="logout">
-                    <v-list-item-title>Option {{ n }}</v-list-item-title>
+                    <v-list-item-title>Option</v-list-item-title>
                 </v-list-item>
             </v-list>
         </v-menu>

@@ -10,6 +10,11 @@ module.exports = {
     rules: {
         'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+        indent: [2, 4],
+        'vue/html-indent': [2, 4],
+        'vue/script-indent': [2, 4, {
+            baseIndent: 1,
+        }],
     },
     parserOptions: {
         parser: 'babel-eslint',
@@ -22,13 +27,6 @@ module.exports = {
             },
         },
     ],
-    rules: {
-        indent: [2, 4],
-        'vue/html-indent': [2, 4],
-        'vue/script-indent': [2, 4, {
-            baseIndent: 1,
-        }],
-    },
     plugins: [
         'html',
     ],
