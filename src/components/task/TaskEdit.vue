@@ -75,11 +75,12 @@
                 this.dialog = false;
             },
             confirm() {
-                this.put(`/projects/${this.project._id}`, { name: this.name }).then(() => {
-                    this.$emit('updateName', this.name);
-                    this.showMessage('Task updated successfully', 'success');
-                    this.dialog = false;
-                });
+                this.put(`/projects/${this.project._id}`, { name: this.name })
+                    .then(() => {
+                        this.$emit('updateName', this.name);
+                        this.showMessage('Task updated successfully', 'success');
+                        this.dialog = false;
+                    });
             },
         },
     };

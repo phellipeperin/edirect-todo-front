@@ -1,11 +1,39 @@
 <template>
-    <v-list>
-        <task
-            v-for="task in taskList"
-            :key="task._id"
-            :task="task"
-        />
-    </v-list>
+    <div>
+        <h4 class="subtitle-1">
+            To Do
+        </h4>
+        <v-list>
+            <task
+                v-for="task in undoneTaskList"
+                :key="task._id"
+                :task="task"
+            />
+            <h6
+                v-if="!undoneTaskList.length"
+                class="overline"
+            >
+                No tasks.
+            </h6>
+        </v-list>
+
+        <h4 class="subtitle-1 mt-3">
+            Done
+        </h4>
+        <v-list>
+            <task
+                v-for="task in doneTaskList"
+                :key="task._id"
+                :task="task"
+            />
+            <h6
+                v-if="!doneTaskList.length"
+                class="overline"
+            >
+                No tasks.
+            </h6>
+        </v-list>
+    </div>
 </template>
 
 <script>
@@ -18,6 +46,10 @@
             return {
                 taskList: [],
             };
+        },
+        computed: {
+            undoneTaskList() { return this.taskList.filter(elem => !elem.done); },
+            doneTaskList() { return this.taskList.filter(elem => elem.done); },
         },
         created() {
             this.taskList = this.list;

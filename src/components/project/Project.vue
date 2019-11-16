@@ -67,17 +67,19 @@
             },
             remove() {
                 this.askForConfirmation('Remove Project', 'Are you sure you want to remove this project? All of it\'s task will be removed as well.', () => {
-                    this.delete(`/projects/${this.projectItem._id}`).then(() => {
-                        this.$emit('remove', this.projectItem._id);
-                        this.showMessage('Project removed successfully!', 'success');
-                    });
+                    this.delete(`/projects/${this.projectItem._id}`)
+                        .then(() => {
+                            this.$emit('remove', this.projectItem._id);
+                            this.showMessage('Project removed successfully!', 'success');
+                        });
                 });
             },
             createTask(taskName) {
-                this.post(`/projects/${this.projectItem._id}/task`, { name: taskName }).then(({ data }) => {
-                    this.projectItem.taskList.push(data);
-                    this.$refs.taskList.addNew(data);
-                });
+                this.post(`/projects/${this.projectItem._id}/task`, { name: taskName })
+                    .then(({ data }) => {
+                        this.projectItem.taskList.push(data);
+                        this.$refs.taskList.addNew(data);
+                    });
             },
         },
     };

@@ -38,9 +38,10 @@
             };
         },
         created() {
-            this.get('/projects').then(({ data }) => {
-                this.projectList = data;
-            });
+            this.get('/projects')
+                .then(({ data }) => {
+                    this.projectList = data;
+                });
         },
         methods: {
             addNew(project) {
