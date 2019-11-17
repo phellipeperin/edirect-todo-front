@@ -25,7 +25,10 @@
         </v-toolbar>
 
         <v-card-text>
-            <task-list :list="projectItem.taskList" />
+            <task-list
+                :project-id="projectItem._id"
+                :list="projectItem.taskList"
+            />
         </v-card-text>
 
         <v-divider />
@@ -73,7 +76,7 @@
                 });
             },
             createTask(taskName) {
-                this.post(`/projects/${this.projectItem._id}/task`, { name: taskName })
+                this.post(`/projects/${this.projectItem._id}/tasks`, { name: taskName })
                     .then(({ data }) => {
                         this.projectItem.taskList.push(data);
                         this.$refs.taskNew.clear();

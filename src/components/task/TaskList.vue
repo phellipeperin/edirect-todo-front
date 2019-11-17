@@ -7,7 +7,9 @@
             <task
                 v-for="task in undoneTaskList"
                 :key="task._id"
+                :project-id="projectId"
                 :task="task"
+                @remove="remove"
             />
             <h6
                 v-if="!undoneTaskList.length"
@@ -24,6 +26,7 @@
             <task
                 v-for="task in doneTaskList"
                 :key="task._id"
+                :project-id="projectId"
                 :task="task"
             />
             <h6
@@ -44,6 +47,7 @@
         components: { Task },
         props: {
             list: { type: Array, default: () => [] },
+            projectId: { type: String, required: true },
         },
         data() {
             return {

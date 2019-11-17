@@ -58,7 +58,8 @@
         name: 'TaskEdit',
         mixins: [api],
         props: {
-            project: { type: Object, required: true },
+            task: { type: Object, required: true },
+            projectId: { type: String, required: true },
         },
         data() {
             return {
@@ -68,14 +69,14 @@
         },
         methods: {
             open() {
-                this.name = this.project.name;
+                this.name = this.task.name;
                 this.dialog = true;
             },
             cancel() {
                 this.dialog = false;
             },
             confirm() {
-                this.put(`/projects/${this.project._id}`, { name: this.name })
+                this.put(`/projects/${this.projectId}/tasks/${this.task._id}`, { name: this.name })
                     .then(() => {
                         this.$emit('updateName', this.name);
                         this.showMessage('Task updated successfully', 'success');
