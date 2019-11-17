@@ -13,7 +13,7 @@
                 v-if="!undoneTaskList.length"
                 class="overline"
             >
-                No tasks.
+                No to do tasks.
             </h6>
         </v-list>
 
@@ -30,15 +30,18 @@
                 v-if="!doneTaskList.length"
                 class="overline"
             >
-                No tasks.
+                No done tasks.
             </h6>
         </v-list>
     </div>
 </template>
 
 <script>
+    import Task from './Task.vue';
+
     export default {
         name: 'TaskList',
+        components: { Task },
         props: {
             list: { type: Array, default: () => [] },
         },

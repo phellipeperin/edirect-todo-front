@@ -1,5 +1,5 @@
 <template>
-    <v-list-item>
+    <v-list-item class="px-0">
         <template v-slot:default="{ active, toggle }">
             <v-list-item-action>
                 <v-checkbox

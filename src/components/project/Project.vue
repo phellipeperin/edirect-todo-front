@@ -25,15 +25,13 @@
         </v-toolbar>
 
         <v-card-text>
-            <task-list
-                ref="taskList"
-                :list="projectItem.taskList"
-            />
+            <task-list :list="projectItem.taskList" />
         </v-card-text>
 
         <v-divider />
         <v-card-actions>
             <task-new
+                ref="taskNew"
                 @create="createTask"
             />
         </v-card-actions>
@@ -78,7 +76,7 @@
                 this.post(`/projects/${this.projectItem._id}/task`, { name: taskName })
                     .then(({ data }) => {
                         this.projectItem.taskList.push(data);
-                        this.$refs.taskList.addNew(data);
+                        this.$refs.taskNew.clear();
                     });
             },
         },

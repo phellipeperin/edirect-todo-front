@@ -47,6 +47,9 @@
                     this.$emit('create', this.name);
                 }
             },
+            clear() {
+                this.name = '';
+            },
         },
     };
 </script>
