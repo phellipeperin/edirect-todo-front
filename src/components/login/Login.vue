@@ -34,10 +34,11 @@
 
 <script>
     import api from '../../util/mixins/api/api';
+    import loginService from '../../util/mixins/login/loginService';
 
     export default {
         name: 'Login',
-        mixins: [api],
+        mixins: [api, loginService],
         data() {
             return {
                 username: '',
@@ -49,12 +50,8 @@
                 if (!this.username || !this.password) {
                     this.showMessage('Please fill both fields.', 'warning');
                 } else {
-                    this.post('/login', { username: this.username, password: this.password }).then(({ data }) => {
-                        window.localStorage.setItem('authToken', data);
-                        this.get('/profile').then(({ data: profileData }) => {
-                            this.$store.commit('user', profileData);
-                            this.$router.push('/project');
-                        });
+                    this.post('/login', { username: this.username, password: this.password }).then(({ data: token }) => {
+                        this.doLogin(token);
                     });
                 }
             },

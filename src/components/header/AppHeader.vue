@@ -13,7 +13,7 @@
                         text
                         v-on="on"
                     >
-                        User Name
+                        {{ $store.state.user.name }}
                     </v-btn>
                 </template>
 
@@ -28,11 +28,17 @@
 </template>
 
 <script>
+    import api from '../../util/mixins/api/api';
+
     export default {
         name: 'AppHeader',
+        mixins: [api],
         methods: {
             logout() {
-                // TODO
+                this.post('/logout').then(() => {
+                    window.localStorage.setItem('authToken', '');
+                    window.location.replace('/');
+                });
             },
         },
     };

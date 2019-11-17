@@ -42,10 +42,11 @@
 
 <script>
     import api from '../../util/mixins/api/api';
+    import loginService from '../../util/mixins/login/loginService';
 
     export default {
         name: 'Register',
-        mixins: [api],
+        mixins: [api, loginService],
         data() {
             return {
                 user: {
@@ -60,8 +61,8 @@
                 if (!this.user.username || !this.user.name || !this.user.password) {
                     this.showMessage('Please fill all the fields.', 'warning');
                 } else {
-                    this.post('/users', this.user).then(({ data }) => {
-                        console.log(data);
+                    this.post('/users', this.user).then(({ data: token }) => {
+                        this.doLogin(token);
                     });
                 }
             },
