@@ -23,6 +23,8 @@
         <v-btn
             block
             large
+            :disabled="Boolean(this.$store.state.request.active)"
+            :loading="Boolean(this.$store.state.request.active)"
             color="accent"
             class="mt-2"
             @click="login"

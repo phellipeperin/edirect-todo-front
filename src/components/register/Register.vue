@@ -31,6 +31,8 @@
         <v-btn
             block
             large
+            :disabled="Boolean(this.$store.state.request.active)"
+            :loading="Boolean(this.$store.state.request.active)"
             color="accent"
             class="mt-2"
             @click="register"
@@ -62,6 +64,7 @@
                     this.showMessage('Please fill all the fields.', 'warning');
                 } else {
                     this.post('/users', this.user).then(({ data: token }) => {
+                        this.showMessage('Signed up successfully!', 'success');
                         this.doLogin(token);
                     });
                 }

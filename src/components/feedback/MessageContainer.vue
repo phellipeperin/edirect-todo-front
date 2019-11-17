@@ -1,7 +1,6 @@
 <template>
     <div>
         <v-snackbar
-            :key="$store.state.feedbackMessage.text"
             v-model="$store.state.feedbackMessage.show"
             multi-line
             bottom
