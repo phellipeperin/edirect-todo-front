@@ -32,8 +32,6 @@ export default {
                     window.location.replace('/');
                 } else if (error.response.status === 400 || error.response.status === 409) {
                     this.showMessage(error.response.data, 'warning');
-                } else if (error.response.status === 403) { // TODO verificar
-                    this.showMessage('Access denied.', 'error');
                 } else if (error.response.status === 502) {
                     this.showMessage('Ops! Seems like our server is down. Try again in a few minutes.', 'error');
                 } else if (error.response.status >= 500 && error.response.status <= 599) {
