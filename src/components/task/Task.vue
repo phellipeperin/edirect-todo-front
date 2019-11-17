@@ -35,7 +35,7 @@
             </v-list-item-action>
 
             <v-list-item-action v-if="task.done">
-                <v-tooltip bottom>
+                <v-tooltip top>
                     <template v-slot:activator="{ on }">
                         <v-icon
                             color="grey lighten-1"
